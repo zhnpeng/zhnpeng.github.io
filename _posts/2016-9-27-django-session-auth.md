@@ -32,11 +32,11 @@ DATABASES = {
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 {% endhighlight %}
 
-从请求中获取用户的过程:
-SessionMiddle从request取得session_key,
-然后根据session_key在数据库表Django_session中加载session数据(包含_auth_user_id),把sesion data设值到request
-SessionMiddle从上一步的session中取得_auth_user_id,根据这个id从数据库用户表加载user,把user设值到request.
-先看看SessionStore load session的过程:
+从请求中获取用户的过程:</br>
+SessionMiddleware从request取得session_key,
+然后根据session_key在数据库表Django_session中加载session数据(包含_auth_user_id),把sesion data设值到request</br>
+AuthenticationMiddleware从上一步的session中取得_auth_user_id,根据这个id从数据库用户表加载user,把user设值到request.</br>
+先看看SessionStore load session的过程:</br>
 
 {% highlight python %}
 # django.contrib.sessions.backends.cached_db
@@ -85,10 +85,10 @@ Class SessionStore(SessionBase):
 {% endhighlight %}
 
 从load函数可以看出,cache_db.py的SessionStore先从caches里边根据cache_key找session data,
-如果找不到才会从数据库里找(通过ORM),而db.py的SessionStore是直接从数据库里边加载session data的,
+如果找不到才会从数据库里找(通过ORM),而db.py的SessionStore是直接从数据库里边加载session data的</br>
 另外{% highlight python %}self.decode(s.session_data){% endhighlight %}很重要,这里是
-用HMAC的签名加密的方式验证调用者得身份,如果身份不对的话会抛出SuspiciousOperation的错误,导致加载失败,
-返回空字典.追踪下去得到验证代码如下:
+用HMAC的签名加密的方式验证调用者得身份,如果身份不对的话会抛出SuspiciousOperation的错误,导致加载失败,返回空字典.</br>
+追踪下去得到验证代码如下:
 
 {% highlight python %}
 # django.utils.crypto
@@ -116,7 +116,7 @@ def salted_hmac(key_salt, value, secret=None):
 上面代码可以看到,hmac使用一个key对value进行加密,而这个key的一部分就是Django App的SECRET_KEY,
 关于SECRET_KEY的用途参考: <a href="https://docs.djangoproject.com/en/1.10/ref/settings/#std:setting-SECRET_KEY">Django-setting-SECRET_KEY</a>
 
-AuthenicationMiddle中也有一个HMAC校验的过程:
+AuthenticationMiddle中也有一个HMAC校验的过程:
 
 {% highlight python %}
 # django.contrib.auth.__init__
@@ -153,4 +153,4 @@ def get_user(request):
 1. 数据库设置一致</br>
 2. SECRET_KEY和app1一致</br>
 3. app2不能使用带缓存的SessionStore backend.</br>
-或者改写SessionMiddleware和AuthenicationMiddle,把HAMC校验部分去掉.
+或者改写SessionMiddleware和AuthenticationMiddle,把HAMC校验部分去掉.
