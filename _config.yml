@@ -10,5 +10,6 @@ github_username:  layjump
 
 # Build settings
 markdown: rdiscount
+highlighter: pygments
 
 permalink: /:year/:month/:day/:title.html
