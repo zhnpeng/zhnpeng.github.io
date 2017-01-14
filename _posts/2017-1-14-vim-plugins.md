@@ -109,7 +109,7 @@ Ctrl+n开启多光标操作，Ctrl+n同时选取下一个keyword，Esc退出。
 文件夹浏览器
 ### 配置
 
-> nnoremap <F2> :NERDTreeToggle<Enter>
+> nnoremap <F2\> :NERDTreeToggle<Enter\>
 
 ## vim-matrix-screensaver
 屏保，纯装逼用。。
