@@ -43,10 +43,10 @@ vundle安装完之后，需要进入目录安装，例如：
 
 ### 配置
 
-> let g:ycm_error_symbol = '>>'
-> let g:ycm_warning_symbol = '>- '
-> nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-> nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+> let g:ycm_error_symbol = '>>' </br>
+> let g:ycm_warning_symbol = '>- ' </br>
+> nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR> </br>
+> nnoremap <leader>gf :YcmCompleter GoToDefinition<CR> </br>
 > nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 > nmap <F4> :YcmDiags<CR>
 
