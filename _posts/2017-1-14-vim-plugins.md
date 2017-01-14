@@ -49,22 +49,26 @@ vundle安装完之后，需要进入目录安装，例如：
 代码定位，查找和跳转，需要安装ctags
 > sudo apt-get install ctags
 ### 配置
-> map <F8> :TagbarToggle<CR>
-> let g_tagbarautoclose = 1 "按Enter跳转之后tagbar窗口自动关闭。
-> let g_tagbarautofocus = 1 "按F8打开tagbar窗口之后光标自动跳转到tagbar窗口。
+{% highlight %}
+map <F8> :TagbarToggle<CR>
+let g_tagbarautoclose = 1 "按Enter跳转之后tagbar窗口自动关闭。
+let g_tagbarautofocus = 1 "按F8打开tagbar窗口之后光标自动跳转到tagbar窗口。
+{% endhighlight %}
 ### 用法
-F8然后Enter
+> <F8>+<Enter>
 
 ## vim-multiple-cursors
 多光标同时操作
 ### 配置
-> let g:multi_cursor_use_default_mapping=0
-> let g:multi_cursor_next_key='<C-n>'
-> let g:multi_cursor_prev_key='<C-p>'
-> let g:multi_cursor_skip_key='<C-x>'
-> let g:multi_cursor_quit_key='<Esc>'
-> let g:multi_cursor_start_key='<C-n>'
-> let g:multi_cursor_start_word_key='g<C-n>'
+{% highlight %}
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-n>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
+let g:multi_cursor_start_key='<C-n>'
+let g:multi_cursor_start_word_key='g<C-n>'
+{% endhighlight %}
 ### 用法
 Ctrl+n开启多光标操作，Ctrl+n同时选取下一个keyword，Esc退出。
 选取完作用目标之后Ctrl+c删除，然后重新编辑。
