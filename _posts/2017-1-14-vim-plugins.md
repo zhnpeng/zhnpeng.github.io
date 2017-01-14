@@ -9,21 +9,23 @@ datetime: 2017-1-14 22:50
 ================
 # vimrc plugins
 includes:
-- 'VundleVim/Vundle.vim'
-- 'Valloric/YouCompleteMe'
-- 'SirVer/ultisnips'
-- 'majutsushi/tagbar'
-- 'terryma/vim-multiple-cursors'
-- 'vim-airline/vim-airline'
-- 'vim-airline/vim-airline-themes'
-- 'kien/ctrlp.vim'
-- 'uguu-org/vim-matrix-screensaver'
-- 'scrooloose/nerdtree'
-- 'mileszs/ack.vim'
+* 'VundleVim/Vundle.vim'
+* 'Valloric/YouCompleteMe'
+* 'SirVer/ultisnips'
+* 'majutsushi/tagbar'
+* 'terryma/vim-multiple-cursors'
+* 'vim-airline/vim-airline'
+* 'vim-airline/vim-airline-themes'
+* 'kien/ctrlp.vim'
+* 'uguu-org/vim-matrix-screensaver'
+* 'scrooloose/nerdtree'
+* 'mileszs/ack.vim'
 
 ## Vundle
 vim 插件管理器，安装vundle:
+
 > git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim'
+
 安装插件项目参考：<a href="https://github.com/layjump/vimrc.git">vim配置和插件安装</a>
 
 ## YouCompleteMe
@@ -65,7 +67,7 @@ vundle安装完之后，需要进入目录安装，例如：
 
 ### 用法
 
-> \<F8\>+\<Enter\>
+> F8+Enter
 
 ## vim-multiple-cursors
 多光标同时操作
@@ -92,7 +94,7 @@ Ctrl+n开启多光标操作，Ctrl+n同时选取下一个keyword，Esc退出。
 ### 用法
 
 > :Ack! keyword
-> \a keyword
+> \\a keyword
 
 ## ctrlp.vim
 文件查找，支持递归
