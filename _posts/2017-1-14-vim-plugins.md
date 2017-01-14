@@ -45,10 +45,10 @@ vundle安装完之后，需要进入目录安装，例如：
 
 > let g:ycm_error_symbol = '>>' </br>
 > let g:ycm_warning_symbol = '>- ' </br>
-> nnoremap <leader>gl :YcmCompleter GoToDeclaration\<CR\> </br>
-> nnoremap <leader>gf :YcmCompleter GoToDefinition\<CR\> </br>
-> nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration\<CR\> </br>
-> nmap <F4> :YcmDiags<CR>
+> nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR\> </br>
+> nnoremap <leader>gf :YcmCompleter GoToDefinition<CR\> </br>
+> nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR\> </br>
+> nmap <F4> :YcmDiags<CR\>
 
 ### 用法
 
@@ -64,7 +64,7 @@ vundle安装完之后，需要进入目录安装，例如：
 
 ### 配置
 
-> map <F8> :TagbarToggle\<CR\> </br>
+> map <F8> :TagbarToggle<CR\> </br>
 > let g_tagbarautoclose = 1 "按Enter跳转之后tagbar窗口自动关闭。 </br>
 > let g_tagbarautofocus = 1 "按F8打开tagbar窗口之后光标自动跳转到tagbar窗口。
 
@@ -77,12 +77,12 @@ vundle安装完之后，需要进入目录安装，例如：
 ### 配置
 
 > let g:multi_cursor_use_default_mapping=0 </br>
-> let g:multi_cursor_next_key='<C-n>' </br>
-> let g:multi_cursor_prev_key='<C-p>' </br>
-> let g:multi_cursor_skip_key='<C-x>' </br>
-> let g:multi_cursor_quit_key='<Esc>' </br>
-> let g:multi_cursor_start_key='<C-n>' </br>
-> let g:multi_cursor_start_word_key='g<C-n>'
+> let g:multi_cursor_next_key='<C-n\>' </br>
+> let g:multi_cursor_prev_key='<C-p\>' </br>
+> let g:multi_cursor_skip_key='<C-x\>' </br>
+> let g:multi_cursor_quit_key='<Esc\>' </br>
+> let g:multi_cursor_start_key='<C-n\>' </br>
+> let g:multi_cursor_start_word_key='g<C-n\>'
 
 ### 用法
 Ctrl+n开启多光标操作，Ctrl+n同时选取下一个keyword，Esc退出。
@@ -92,7 +92,7 @@ Ctrl+n开启多光标操作，Ctrl+n同时选取下一个keyword，Esc退出。
 文本查找，支持递归和正则
 ### 配置
 
-> nnoremap <Leader>a :Ack!<Space>
+> nnoremap <Leader\>a :Ack!<Space\>
 
 ### 用法
 
