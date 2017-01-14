@@ -49,7 +49,7 @@ vundle安装完之后，需要进入目录安装，例如：
 代码定位，查找和跳转，需要安装ctags
 > sudo apt-get install ctags
 ### 配置
-{% highlight %}
+{% highlight python %}
 map <F8> :TagbarToggle<CR>
 let g_tagbarautoclose = 1 "按Enter跳转之后tagbar窗口自动关闭。
 let g_tagbarautofocus = 1 "按F8打开tagbar窗口之后光标自动跳转到tagbar窗口。
@@ -60,7 +60,7 @@ let g_tagbarautofocus = 1 "按F8打开tagbar窗口之后光标自动跳转到tag
 ## vim-multiple-cursors
 多光标同时操作
 ### 配置
-{% highlight %}
+{% highlight python %}
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_next_key='<C-n>'
 let g:multi_cursor_prev_key='<C-p>'
