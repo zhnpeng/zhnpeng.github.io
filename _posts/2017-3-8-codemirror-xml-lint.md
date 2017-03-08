@@ -52,10 +52,9 @@ CodeMirror({
 
 <a href="https://www.w3schools.com/xml/schema_intro.asp">xml schema</a>
 
-{% highlight html %}
+{% highlight XML %}
 <?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
 <xs:element name="note">
   <xs:complexType>
     <xs:sequence>
@@ -66,7 +65,6 @@ CodeMirror({
     </xs:sequence>
   </xs:complexType>
 </xs:element>
-
 </xs:schema>
 {% endhighlight %}
 
