@@ -87,7 +87,6 @@ function updateHints() {
     for (var i = 0; i < widgets.length; ++i)
       editor.removeLineWidget(widgets[i]);
     widgets.length = 0;
-
     var xml = editor.getValue();
     outputs = XMLLint.validateXML({
         xml: [xml],
@@ -113,7 +112,6 @@ function updateHints() {
 
 window.onload = function() {
   var sc = document.getElementById("xml");
-
   window.editor = CodeMirror(document.getElementById("code"), {
     lineNumbers: true,
     mode: "xml",
