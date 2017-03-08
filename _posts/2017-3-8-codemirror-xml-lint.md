@@ -66,7 +66,7 @@ CodeMirror({
 </xs:element>
 
 </xs:schema>
-{% endhgihlight %}
+{% endhighlight %}
 
 ### xml lint
 
