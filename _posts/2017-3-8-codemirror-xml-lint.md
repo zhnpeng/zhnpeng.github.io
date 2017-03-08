@@ -47,6 +47,8 @@ CodeMirror({
 }) 
 {% endhighlight %}
 
+<p><img src="/assets/img/codemirror-css-lint.png"></p>
+
 ## xml lint
 
 ### xml schema
