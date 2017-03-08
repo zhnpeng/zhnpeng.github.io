@@ -38,7 +38,7 @@ igb_uio driver目录
 比如：
 
 > Network devices using DPDK-compatible driver
-> ============================================
+> \============================================
 > 0000:02:06.0 '82545EM Gigabit Ethernet Controller (Copper)' drv=igb_uio unused=uio_pci_generic
 
 port 0 就是 0000:02:06.0这个设备，igb_uio没有eth0这种interface name
