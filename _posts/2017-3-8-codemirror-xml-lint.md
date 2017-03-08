@@ -49,8 +49,10 @@ CodeMirror({
 ## xml lint
 
 ### xml schema
+
 <a href="https://www.w3schools.com/xml/schema_intro.asp">xml schema</a>
-{% highlight xml %}
+
+{% highlight html %}
 <?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
