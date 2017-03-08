@@ -22,11 +22,11 @@ github仓库addon/lint/下可以找到lint插件.
 
 ## codemirror css lint
 
-<a href="http://codemirror.net/demo/lint.html">CM linter demo page</a>
+<a href="http://codemirror.net/demo/lint.html">Codemirror linter demo page</a>
 
 ### 需要材料
 
-#### CSSLint
+#### CSSLint 用来负责实际的校验
 <a href="https://github.com/CSSLint/csslint">CSSLint内核</a>
 
 #### codmirror addon
