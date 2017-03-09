@@ -78,40 +78,47 @@ CodeMirror({
 ### lint when codemirror change
 
 {% highlight javascript %}
-var fs =require('fs');
 // require XML lint
 var XMLLint = require('.xmllint.js');
-// load schema file
-var schema = fs.readFileSync('xml_schema.xsd');
+// schema with root element name RootElement
+var schema = ''
++ "<xsd:schema xmlns:xsd='http://www.w3.org/2001/XMLSchema'>"
++ "	<xsd:element name='RootElement'>"
++ "		<xsd:complexType>"
++ "			<xsd:sequence>"
++ "				<xsd:any minOccurs='0' maxOccurs='unbounded' processContents='skip'/>"
++ "			</xsd:sequence>"
++ "		</xsd:complexType>"
++ "	</xsd:element>"
++ "</xsd:schema>"; 
 
+var makeErrorMarker = function(err) {
+    var marker = document.createElement('div');
+    marker.className = 'CodeMirror-lint-marker-error';
+    marker.innerHTML = '&nbsp;';
+    marker.title = err.message;
+    return marker;
+}
 function updateHints() {
   editor.operation(function(){
-    for (var i = 0; i < widgets.length; ++i)
-      editor.removeLineWidget(widgets[i]);
-    widgets.length = 0;
+    // clean pre lint
+    editor.clearGutter("CodeMirror-lint-markers");
     var xml = editor.getValue();
+    /*
+        output format: ["error1_description:line_number: detail", "error2_description:line_number: detail", ...]
+    */
     outputs = XMLLint.validateXML({
         xml: [xml],
         schema: [schema]
     })
     for (var i = 0; i < outputs.errors.length; ++i) {
-      var err = JSHINT.errors[i];
-      if (!err) continue;
-      var msg = document.createElement("div");
-      var icon = msg.appendChild(document.createElement("span"));
-      icon.innerHTML = "!!";
-      icon.className = "lint-error-icon";
-      msg.appendChild(document.createTextNode(err.reason));
-      msg.className = "lint-error";
-      widgets.push(editor.addLineWidget(err.line - 1, msg, {coverGutter: false, noHScroll: true}));
+      var error = outputs.errors[i].split[':'];
+      var line_number = parseInt(error[1], 10);
+      var message = error.slice(2).join('');
+      editor.setGutterMarker(line_number, "CodeMirror-lint-markers", makeErrorMarker(message));
     }
   });
-  var info = editor.getScrollInfo();
-  var after = editor.charCoords({line: editor.getCursor().line + 1, ch: 0}, "local").top;
-  if (info.top + info.clientHeight < after)
-    editor.scrollTo(null, after - info.clientHeight + 3);
 }
-
 window.onload = function() {
   var sc = document.getElementById("xml");
   window.editor = CodeMirror(document.getElementById("code"), {
@@ -119,13 +126,11 @@ window.onload = function() {
     mode: "xml",
     value: """"
   });
-
   var waiting;
   editor.on("change", function() {
     clearTimeout(waiting);
     waiting = setTimeout(updateHints, 500);
   });
-
   setTimeout(updateHints, 100);
 };
 {% endhighlight %}
