@@ -91,7 +91,6 @@ var schema = ''
 + "		</xsd:complexType>"
 + "	</xsd:element>"
 + "</xsd:schema>"; 
-
 var makeErrorMarker = function(err) {
     var marker = document.createElement('div');
     marker.className = 'CodeMirror-lint-marker-error';
