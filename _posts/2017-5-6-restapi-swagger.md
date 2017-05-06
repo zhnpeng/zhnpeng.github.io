@@ -72,13 +72,20 @@ java -jar swagger-codegen-cli.jar generate -i "https://host/restapi/api-docs" -l
 -o api输出的目录<br/>
 </p>
 <p>
-最后输出的主要文件有
-api目录，存放api类(APIClass)，具体请求类<br/>
+最后输出的目录结构：
+{% highlight shell %}
+|-OutputDir
+   |- apis
+       |- XXX_api.py
+   |- models
+       |- XXX_serializer.py
+ api_client.py
+{% endhighlight %}
+api目录用来存放api类(APIClass)，具体请求类<br/>
 > apis/XXX_api.py
 models目录存放serializers<br/>
 > models/XXX_serializer.py
-得到APIClient<br/>
-> api_client.py
+api_client.py是Api Client Class。<br/>
 </p>
 
 ## client的使用方法：
