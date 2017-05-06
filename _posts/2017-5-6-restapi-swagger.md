@@ -44,13 +44,13 @@ preview a search for transaction dataset.
 
 request_serializer: TransPreviewParamSerializer
 parameters:
-    - name: sort
+    - name: id
       type: string
       paramType: query
-    - name: offset
+    - name: type
       type: integer
       paramType: query
-    - name: limit
+    - name: index
       type: integer
       required: false
       paramType: query
@@ -84,5 +84,6 @@ models目录存放serializers<br/>
 ## client的使用方法：
 <p>
 api = XXX_APIClass(APIClient) 实例化APIClass对象，然后调用api.method()，请求对应的restapi。<br/>
-method名称是自动生成的，生成规则是：又ViewSet类名和方法决定，比如HAServerViewSet.list，得到ha_server_list方法。
+method名称是自动生成的，生成规则是：又ViewSet类名和方法决定，比如ITProductViewSet.list，得到it_product_list。<br/>
+api.it_product_list()就会向restapi服务端发送请求，获取数据。
 </p>
