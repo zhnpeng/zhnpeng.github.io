@@ -57,7 +57,7 @@ parameters:
 """
 {% endhighlight %}
 
-# swagger codegen
+# 生成client code
 <a href="https://github.com/swagger-api/swagger-codegen">swagger-codegen</a>
 
 ## 下载codegen客户端：
