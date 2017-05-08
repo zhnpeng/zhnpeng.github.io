@@ -13,7 +13,7 @@ datetime: 2017-5-8 15:04
 基于lsprof的用c语言实现的库,开销小,统计函数的调用时间和次数.
 
 # Code
-{% heightlight python %}
+{% hightlight python %}
 import cProfile, pstats
 import re
 
