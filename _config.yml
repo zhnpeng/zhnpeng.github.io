@@ -10,6 +10,6 @@ github_username:  layjump
 
 # Build settings
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 
 permalink: /:year/:month/:day/:title.html
