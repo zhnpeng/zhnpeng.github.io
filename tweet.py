@@ -2,7 +2,8 @@
 import sys, getopt, os
 from datetime import datetime
 
-t_format = '%Y-%m-%d-%H-%M-%S'
+tf_format = '%Y-%m-%d-%H-%M-%S'
+t_format = '%Y-%m-%d %H:%M:%S'
 
 template = '<p>[{datetime}]{content}</p>'
 
@@ -32,7 +33,7 @@ def main(argv):
         elif opt in ("-m", "--message"):
             message = arg
     now = datetime.now()
-    with open(os.path.join('_includes', 'tweet', now.strftime(t_format)+suffix), 'w') as fp:
+    with open(os.path.join('_includes', 'tweet', now.strftime(tf_format)+suffix), 'w') as fp:
         content = template.format(datetime=now.strftime(t_format), content=message)
         fp.write(content)
 
