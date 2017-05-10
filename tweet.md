@@ -1,7 +1,7 @@
 ---
 layout: page
-title: 关于
+title: tweet
 permalink: /tweet/
 ---
 
-{% include test.md %}
+{% include tweet/test.md %}
