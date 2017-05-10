@@ -6,8 +6,7 @@ t_format = '%Y-%m-%d-%H-%M-%S'
 
 template = '<p>[{datetime}]{content}</p>'
 
-tweet_template = '''
----
+tweet_template = '''---
 layout: page
 title: tweet
 permalink: /tweet/
