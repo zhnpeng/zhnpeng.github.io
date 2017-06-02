@@ -7,7 +7,7 @@ datetime: 2016-9-27 11:30
 
 {{ page.title }}
 ================
-前言:</br>
+前言:<br/>
     一个Django App(app2)需要使用另外一个Django App(app1)的session和用户系统进行登录认证.
 app1使用Django自带的SessionMiddle和AuthenticationMiddle,下面我结合Django源码和需求,
 分析从带session_key的请求,获得用户的过程.
@@ -32,11 +32,11 @@ DATABASES = {
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 {% endhighlight %}
 
-从请求中获取用户的过程:</br>
+从请求中获取用户的过程:<br/>
 SessionMiddleware从request取得session_key,
-然后根据session_key在数据库表Django_session中加载session数据(包含_auth_user_id),把sesion data设值到request</br>
-AuthenticationMiddleware从上一步的session中取得_auth_user_id,根据这个id从数据库用户表加载user,把user设值到request.</br>
-先看看SessionStore load session的过程:</br>
+然后根据session_key在数据库表Django_session中加载session数据(包含_auth_user_id),把sesion data设值到request<br/>
+AuthenticationMiddleware从上一步的session中取得_auth_user_id,根据这个id从数据库用户表加载user,把user设值到request.<br/>
+先看看SessionStore load session的过程:<br/>
 
 {% highlight python %}
 # django.contrib.sessions.backends.cached_db
@@ -85,9 +85,9 @@ Class SessionStore(SessionBase):
 {% endhighlight %}
 
 从load函数可以看出,cache_db.py的SessionStore先从caches里边根据cache_key找session data,
-如果找不到才会从数据库里找(通过ORM),而db.py的SessionStore是直接从数据库里边加载session data的</br>
+如果找不到才会从数据库里找(通过ORM),而db.py的SessionStore是直接从数据库里边加载session data的<br/>
 另外{% highlight python %}self.decode(s.session_data){% endhighlight %}很重要,这里是
-用HMAC的签名加密的方式验证调用者得身份,如果身份不对的话会抛出SuspiciousOperation的错误,导致加载失败,返回空字典.</br>
+用HMAC的签名加密的方式验证调用者得身份,如果身份不对的话会抛出SuspiciousOperation的错误,导致加载失败,返回空字典.<br/>
 追踪下去得到验证代码如下:
 
 {% highlight python %}
@@ -149,8 +149,8 @@ def get_user(request):
     return user or AnonymousUser()
 {% endhighlight %}
 
-所以如果要实现App2使用App1的session系统,可以的做法是:</br>
-1. 数据库设置一致</br>
-2. SECRET_KEY和app1一致</br>
-3. app2不能使用带缓存的SessionStore backend.</br>
+所以如果要实现App2使用App1的session系统,可以的做法是:<br/>
+1. 数据库设置一致<br/>
+2. SECRET_KEY和app1一致<br/>
+3. app2不能使用带缓存的SessionStore backend.<br/>
 或者改写SessionMiddleware和AuthenticationMiddle,把HAMC校验部分去掉.
