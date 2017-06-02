@@ -13,7 +13,7 @@ datetime: 2017-6-2 9:59
 Mongo sort操作是在内存里sort数据，默认会有最大内存限制.
 find/query的sort默认是32MB,aggregate的$sort默认是100MB，当sort条目数据量超过之后就会报错.
 </p>
-{% highlight json %}
+{% highlight javascript %}
 Error: error: {
     "waitedMS" : NumberLong(0),
     "ok" : 0,
@@ -46,18 +46,18 @@ Mongo 2.4以后，内存只会保存limit数量n的top n的条目，应该是sor
 简单性能比对：
 
 1.count
-> db.getCollection('transtrack_20170601T153539F929136R119').find({}).count()
-> 81601
+db.getCollection('transtrack_20170601T153539F929136R119').find({}).count()
+81601
 
 2.set memory limit to 100MB
-> db.adminCommand({setParameter: 1, internalQueryExecMaxBlockingSortBytes: 100000000})
+db.adminCommand({setParameter: 1, internalQueryExecMaxBlockingSortBytes: 100000000})
 
 3.sort use memory only
-> db.getCollection('transtrack_20170601T153539F929136R119').find({}).sort({duration:1})
+db.getCollection('transtrack_20170601T153539F929136R119').find({}).sort({duration:1})
 cost: 0.4s-0.7s
 
 5.use aggregate and allowDiskUse
-> db.getCollection('transtrack_20170601T153539F929136R119').aggregate([{$sort: {duration: 1}}], {allowDiskUse: true})
+db.getCollection('transtrack_20170601T153539F929136R119').aggregate([{$sort: {duration: 1}}], {allowDiskUse: true})
 cost 1s-1.5s
 
 80000数据,sort的字段没有index,默认document limit情况下，aggregate+allowDiskUse性能比memory limit范围内的query sort慢了一倍多。
