@@ -24,20 +24,20 @@ Error: error: {
 
 ## 解决方法:
 
-# 增大内存ram limit
+# 1.增大内存ram limit
 db.adminCommand({setParameter: 1, internalQueryExecMaxBlockingSortBytes: 100000000})
 
-# 使用limit限制数据集数量
+# 2.使用limit限制数据集数量
 <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/sort/#sort-operator-and-memory">aggregation sort operator and memory</a>
 <p>
 Mongo 2.4以后，内存只会保存limit数量n的top n的条目，应该是sort过程中把末尾元素替换掉。<br />
 2.4版本以前，mongo会把所有item放到内存在sort，然后做limit,因此这个方法只适用于Mongo 2.4以后的版本.
 </p>
 
-# 建立索引
+# 3.建立索引
 对于query操作，可以通过<strong>db.connection.createIndex({key: 1})</strong>的方式建立索引。
 
-# 使用aggregate代替query
+# 4.使用aggregate代替query
 <p>
 使用ggregate时加上allowDiskUse:true参数（因为aggregate document有16MB的内存限制），允许aggregate时当内存超过限制时使用Disk Storage。<br/>
 如果是query/find操作，可以转换成aggregate操作。aggregate的$sort内存限制默认是100MB，而query sort是32MB。<br/>
