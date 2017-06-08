@@ -36,7 +36,7 @@ datetime: 2017-6-8 21:13
 
 ## 解决跨域请求访问问题
 # CORS（跨域资源共享）
-在<strong>服务器端</strong>配置CORS参数，允许跨域访问的origin url白名单。
+在服务器端配置CORS参数，允许跨域访问的origin url白名单。
 
 # 反向代理（服务端）
 <p>
