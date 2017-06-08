@@ -17,6 +17,7 @@ datetime: 2017-6-8 21:13
 </p>
 
 # cookies参数和数据结构
+<p>
 <ul>
 <li>
 domain表示的是cookie所在的域，默认为请求的地址，如网址为www.test.com/test/test.aspx，那么domain默认为www.test.com。而跨域访问，如域A为t1.test.com，域B为t2.test.com，那么在域A生产一个令域A和域B都能访问的cookie就要将该cookie的domain设置为.test.com；如果要在域A生产一个令域A不能访问而域B能访问的cookie就要将该cookie的domain设置为t2.test.com。
@@ -30,9 +31,10 @@ path表示cookie所在的目录，asp.net默认为/，就是根目录。在同�
 <li>
 含值键值对的cookie：以前一直用的是nam=value单键值对的cookie，一说到含多个子键值对的就蒙了。现在总算弄清楚了。含多个子键值对的cookie格式是name=key1=value1&key2=value2。可以理解为单键值对的值保存一个自定义的多键值字符串，其中的键值对分割符为&，当然可以自定义一个分隔符，但用asp.net获取时是以&为分割符。
 </li>
+</p>
 
 比如google的cookies:
-<img src="/assets/img/cookies-sample.png" />
+<img src="/assets/img/cookie-sample.png" />
 
 ### 跨域请求（设认证信息存储在cookies中）
 <p>
