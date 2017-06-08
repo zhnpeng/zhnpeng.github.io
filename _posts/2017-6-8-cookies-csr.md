@@ -17,24 +17,11 @@ datetime: 2017-6-8 21:13
 </p>
 
 # cookies参数和数据结构
-<p>
-<ul>
-<li>
-domain表示的是cookie所在的域，默认为请求的地址，如网址为www.test.com/test/test.aspx，那么domain默认为www.test.com。而跨域访问，如域A为t1.test.com，域B为t2.test.com，那么在域A生产一个令域A和域B都能访问的cookie就要将该cookie的domain设置为.test.com；如果要在域A生产一个令域A不能访问而域B能访问的cookie就要将该cookie的domain设置为t2.test.com。
-</li>
-<li>
-path表示cookie所在的目录，asp.net默认为/，就是根目录。在同一个服务器上有目录如下：/test/,/test/cd/,/test/dd/，现设一个cookie1的path为/test/，cookie2的path为/test/cd/，那么test下的所有页面都可以访问到cookie1，而/test/和/test/dd/的子页面不能访问cookie2。这是因为cookie能让其path路径下的页面访问。
-</li>
-<li>
-浏览器会将domain和path都相同的cookie保存在一个文件里，cookie间用*隔开。
-</li>
-<li>
-含值键值对的cookie：以前一直用的是nam=value单键值对的cookie，一说到含多个子键值对的就蒙了。现在总算弄清楚了。含多个子键值对的cookie格式是name=key1=value1&key2=value2。可以理解为单键值对的值保存一个自定义的多键值字符串，其中的键值对分割符为&，当然可以自定义一个分隔符，但用asp.net获取时是以&为分割符。
-</li>
-</p>
-
-比如google的cookies:
 <img src="/assets/img/cookie-sample.png" />
+1.domain表示的是cookie所在的域，默认为请求的地址，如网址为www.test.com/test/test.aspx，那么domain默认为www.test.com。而跨域访问，如域A为t1.test.com，域B为t2.test.com，那么在域A生产一个令域A和域B都能访问的cookie就要将该cookie的domain设置为.test.com；如果要在域A生产一个令域A不能访问而域B能访问的cookie就要将该cookie的domain设置为t2.test.com。<br/>
+2.path表示cookie所在的目录，asp.net默认为/，就是根目录。在同一个服务器上有目录如下：/test/,/test/cd/,/test/dd/，现设一个cookie1的path为/test/，cookie2的path为/test/cd/，那么test下的所有页面都可以访问到cookie1，而/test/和/test/dd/的子页面不能访问cookie2。这是因为cookie能让其path路径下的页面访问。<br/>
+3.浏览器会将domain和path都相同的cookie保存在一个文件里，cookie间用*隔开。<br/>
+4.含值键值对的cookie：以前一直用的是nam=value单键值对的cookie，一说到含多个子键值对的就蒙了。现在总算弄清楚了。含多个子键值对的cookie格式是name=key1=value1&key2=value2。可以理解为单键值对的值保存一个自定义的多键值字符串，其中的键值对分割符为&，当然可以自定义一个分隔符，但用asp.net获取时是以&为分割符。<br/>
 
 ### 跨域请求（设认证信息存储在cookies中）
 <p>
@@ -48,10 +35,10 @@ path表示cookie所在的目录，asp.net默认为/，就是根目录。在同�
 </p>
 
 ## 解决跨域请求访问问题
-# 1.CORS（跨域资源共享）
+# CORS（跨域资源共享）
 在<strong>服务器端</strong>配置CORS参数，允许跨域访问的origin url白名单。
 
-# 2.反向代理（服务端）
+# 反向代理（服务端）
 <p>
 反向代理（Reverse Proxy）方式是指以代理服务器来接受Internet上的连接请求，然后将请求转发给内部网络上的服务器；并将从服务器上得到的结果返回给Internet上请求连接的客户端，此时代理服务器对外就表现为一个服务器。
 </p>
@@ -62,7 +49,7 @@ path表示cookie所在的目录，asp.net默认为/，就是根目录。在同�
 load balance通过反向代理来做。
 </p>
 
-# 3.jsonp（客户端+服务端）
+# jsonp（客户端+服务端）
 a) jsonp是利用get方法一般都是没有跨域请求限制这一点来做的，比如domain.com可以<script src="www.google.com/some/script.js" />来引入别的domain的js/img或者css资源。所以jsonp只支持http get方法.<br/>
 b) jsonp要求在ajax请求中url?后加入key为callback，value为callback_function的参数。<br/>
 c) 服务端返回的数据需要把json数据包装到callback_function里边。<br/>
