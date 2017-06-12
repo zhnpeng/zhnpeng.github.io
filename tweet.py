@@ -47,4 +47,6 @@ def main(argv):
 
 
 if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print "usage: %s message" % sys.argv[0]
     main(sys.argv[1:])
