@@ -14,7 +14,7 @@ datetime: 2017-6-21 14:07
 流程: 函数表达式解析 -> 运行解析后的表达式 -> 出运算结果 <br/>
 
 # 包括组件:
-1. 基于pyparsing的nested function call grammar.支持表达式和python的args和kwargs
+1. 基于pyparsing的nested function call grammar.支持表达式和python的args和kwargs,参数类型只支持string和float
 2. 运算函数,所有运算函数接收iterator进行迭代运算,kwargs作为辅助参数.
 3. 运行函数,负责根据pyparsing解析出来的词法结构来调度运行具体的运算函数(递归调度),还有负责准备参数
 
