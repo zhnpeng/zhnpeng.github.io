@@ -35,16 +35,31 @@ print resource_obj.name
 import six
 
 
-class Field(object):
+class BaseField(object):
 
     __default = None
 
     def __init__(self, *args, **kwargs):
-        self._default = kwargs.get('default', self.__default)
+        self.__value = kwargs.get('default', self.__default)
 
-    @property
-    def default(self):
-        return self._default
+    def validate(self, value):
+        raise NotImplemented
+
+
+class IntegerField(BaseField):
+
+    def validate(self, value):
+        # raise directly if exception occur
+        self.__value = int(value)
+        # simply return clean value after validate
+        return self.__value
+
+
+class CharField(BaseField):
+
+    def validate(self, value):
+        self.__value = str(value)
+        return self.__value
 
 
 class BaseModel(type):
@@ -53,23 +68,24 @@ class BaseModel(type):
         print [mcls, name, bases, attrs]
         fields = {}
         for attrname, attr in attrs.items():
-            if isinstance(attr, Field):
-                fields[attrname] = attr.default
-                
+            if isinstance(attr, BaseField):
+                fields[attrname] = attr
+
         def __init__(self, *args, **kwargs):
-            for field, default_value in fields.items():
-                setattr(self, field, kwargs.get(field, default_value))
+            for field, field_obj in fields.items():
+                cleaned_data = field_obj.validate(kwargs.get(field, None))
+                setattr(self, field, cleaned_data)
         attrs['__init__'] = __init__
         return type(name, (object,), attrs)
 
 
 class MyModel(six.with_metaclass(BaseModel)):
 
-    age = Field(default=0)
-    name = Field(default='')
+    age = IntegerField(default=0)
+    name = CharField(default='')
 
 
-m = MyModel(age=100, name='aaa')
+m = MyModel(age='a100', name='aaa')
 print MyModel.age, MyModel.name
 print m.age, m.name
 
@@ -80,3 +96,10 @@ Output:
 100 aaa
 """
 {% endhighlight %}
+
+## 结尾
+使用metaclass来实现这种功能我想到的好处有：<br/>
+1. 使用接口非常简单。<br/>
+2. 封装了很多功能，像我上面的简单例子，把Field的validate行为封装成统一调用。<br/>
+还有其他的网上说的好处，就像使用django ORM Model一样，当然djang ORM复杂很多。<br/>
+虽然号称99%的情况用不到metaclass，但是metaclass还是需要学习的。
