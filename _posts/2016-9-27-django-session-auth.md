@@ -83,11 +83,16 @@ Class SessionStore(SessionBase):
             self._session_key = None
             return {}
 {% endhighlight %}
-
-从load函数可以看出,cache_db.py的SessionStore先从caches里边根据cache_key找session data,
+<p>
+从load函数可以看出,cache_db.py的SessionStore先从caches里边根据cache_key找session data,而且当key不存在于cached backend时，
+要求返回None，比如memcached backend返回空字典，导致无法从数据库获取session 信息，所以要把session cached backend禁用掉，
+或者换一个返回None的backend，或者替换这个cacehd backend。
+</p>
+<p>
 如果找不到才会从数据库里找(通过ORM),而db.py的SessionStore是直接从数据库里边加载session data的<br/>
 另外{% highlight python %}self.decode(s.session_data){% endhighlight %}很重要,这里是
 用HMAC的签名加密的方式验证调用者得身份,如果身份不对的话会抛出SuspiciousOperation的错误,导致加载失败,返回空字典.<br/>
+</p>
 追踪下去得到验证代码如下:
 
 {% highlight python %}
@@ -152,5 +157,6 @@ def get_user(request):
 所以如果要实现App2使用App1的session系统,可以的做法是:<br/>
 1. 数据库设置一致<br/>
 2. SECRET_KEY和app1一致<br/>
-3. app2不能使用带缓存的SessionStore backend.<br/>
+3. 如果cached backend当key不存在时不是返回None的话（比如memcached返回空字典{})，那app2不能使用带缓存的SessionStore backend.<br/>
+<br/>
 或者改写SessionMiddleware和AuthenticationMiddle,把HAMC校验部分去掉.
