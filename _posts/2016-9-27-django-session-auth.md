@@ -158,5 +158,6 @@ def get_user(request):
 1. 数据库设置一致<br/>
 2. SECRET_KEY和app1一致<br/>
 3. 如果cached backend当key不存在时不是返回None的话（比如memcached返回空字典{})，那app2不能使用带缓存的SessionStore backend.<br/>
-<br/>
+<P> 
 或者改写SessionMiddleware和AuthenticationMiddle,把HAMC校验部分去掉.
+</P>
