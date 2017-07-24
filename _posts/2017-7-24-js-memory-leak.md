@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 解决Javascript内存泄露问题
-tags: javascript,memory leak,内存泄露
+title: Chrome查找Javascript内存泄露
+tags: javascript,memory leak,内存泄露,chrome
 datetime: 2017-7-24 10:18
 ---
 
