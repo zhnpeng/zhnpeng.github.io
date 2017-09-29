@@ -437,17 +437,152 @@ db.getCollection('stat_cap1_1h_x').aggregate(
     "ok" : 1.0
 }
 {% endhighlight %}
+在一个shard里的情况
+{% highlight python %}
+db.getCollection('stat_cap1_1h_x').aggregate(
+    [
+        { $match: { _id : { $eq: 1506337200} } },
+        { $project: { ts: "$t", trans_type: "$n", _1m: 1, _id: 0 } },
+        { $unwind: "$_1m" },
+        { $match: { _1m: { $ne: null } } },
+        { $project: { ts: { $add: [ "$ts", "$_1m.t" ] }, trans_type: 1, duration: "$_1m.u", resp_count: "$_1m.p" } },
+        { $match: { ts: { $gte: 1506481000, $lt: 1506499201 } } },
+        { $group: { _id: { trans_type: "$trans_type" }, _raw_duration: { $avg: "$duration" }, resp_count: { $sum: "$resp_count" } } } ,
+    ],
+    { explain: true })
+{% endhighlight %}
+输出
+{% highlight json %}
+{
+    "splitPipeline" : null,
+    "shards" : {
+        "SS185" : {
+            "host" : "172.16.13.185:27018",
+            "stages" : [
+                {
+                    "$cursor" : {
+                        "query" : {
+                            "_id" : {
+                                "$eq" : 1506337200.0
+                            }
+                        },
+                        "fields" : {
+                            "_1m" : 1,
+                            "n" : 1,
+                            "t" : 1,
+                            "_id" : 0
+                        },
+                        "queryPlanner" : {
+                            "plannerVersion" : 1,
+                            "namespace" : "bpc_data_app1_1m_201709.stat_cap1_1h_x",
+                            "indexFilterSet" : false,
+                            "parsedQuery" : {
+                                "_id" : {
+                                    "$eq" : 1506337200.0
+                                }
+                            },
+                            "winningPlan" : {
+                                "stage" : "CACHED_PLAN",
+                                "inputStage" : {
+                                    "stage" : "FETCH",
+                                    "inputStage" : {
+                                        "stage" : "SHARDING_FILTER",
+                                        "inputStage" : {
+                                            "stage" : "IXSCAN",
+                                            "keyPattern" : {
+                                                "_id" : 1
+                                            },
+                                            "indexName" : "_id_",
+                                            "isMultiKey" : false,
+                                            "isUnique" : true,
+                                            "isSparse" : false,
+                                            "isPartial" : false,
+                                            "indexVersion" : 1,
+                                            "direction" : "forward",
+                                            "indexBounds" : {
+                                                "_id" : [
+                                                    "[1506337200.0, 1506337200.0]"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "rejectedPlans" : []
+                        }
+                    }
+                },
+                {
+                    "$project" : {
+                        "_id" : false,
+                        "ts" : "$t",
+                        "trans_type" : "$n",
+                        "_1m" : true
+                    }
+                },
+                {
+                    "$unwind" : {
+                        "path" : "$_1m"
+                    }
+                },
+                {
+                    "$match" : {
+                        "_1m" : {
+                            "$ne" : null
+                        }
+                    }
+                },
+                {
+                    "$project" : {
+                        "ts" : {
+                            "$add" : [
+                                "$ts",
+                                "$_1m.t"
+                            ]
+                        },
+                        "trans_type" : true,
+                        "duration" : "$_1m.u",
+                        "resp_count" : "$_1m.p"
+                    }
+                },
+                {
+                    "$match" : {
+                        "ts" : {
+                            "$gte" : 1506481000.0,
+                            "$lt" : 1506499201.0
+                        }
+                    }
+                },
+                {
+                    "$group" : {
+                        "_id" : {
+                            "trans_type" : "$trans_type"
+                        },
+                        "_raw_duration" : {
+                            "$avg" : "$duration"
+                        },
+                        "resp_count" : {
+                            "$sum" : "$resp_count"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "ok" : 1.0
+}
+{% endhighlight %}
 
 ### 一些tips
 <p>
 要换shard_key，没有自动更换的命令，需要：<br/>
-<ul>
+<ol>
 <li>把collection的数据导出，mongoexport db.collection to file.dat</li>
 <li>drop掉集合，drop collection</li>
 <li>重新建集合，设置需要的索引</li>
 <li>配置集合分片，shardCollection(‘db.collection’, {new_key: ‘hashed’})</li>
 <li>导入之前导出的数据，mongoimport to db.collection from file.dat</li>
-</ul>
+</ol>
 以上需要连接mongos操作
 </p>
 <p>
