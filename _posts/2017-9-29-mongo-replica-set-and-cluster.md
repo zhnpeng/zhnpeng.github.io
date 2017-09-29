@@ -54,7 +54,7 @@ sh.shardCollectioin(‘db name.collection name’, {key: directory or ‘hashed�
 sh.addShard(‘replica set name/host:port’)，添加shard数据库（集合）<br/>
 sh.status()，查看cluster的库和集合的状态。<br/>
 如下图：
-<img src="/assets/img/mongo-sh-status.png />
+<img src="/assets/img/mongo-sh-status.png" />
 蓝色框表示3个shards（都不是复制集而是单独mongod server）
 </p>
 
