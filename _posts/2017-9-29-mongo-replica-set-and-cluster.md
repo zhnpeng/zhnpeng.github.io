@@ -12,9 +12,9 @@ datetime: 2017-9-29 16:42
 
 ### 什么时候考虑用Shard Cluster?
 <p>
-当你考虑使用 Sharded cluster 时，通常是要解决如下2个问题</br>
-1. 存储容量受单机限制，即磁盘资源遭遇瓶颈。</br>
-2. 读写能力受单机限制（读能力也可以在复制集里加 secondary 节点来扩展），可能是 CPU、内存或者网卡等资源遭遇瓶颈，导致读写能力无法扩展。</br>
+当你考虑使用 Sharded cluster 时，通常是要解决如下2个问题<br/>
+1. 存储容量受单机限制，即磁盘资源遭遇瓶颈。<br/>
+2. 读写能力受单机限制（读能力也可以在复制集里加 secondary 节点来扩展），可能是 CPU、内存或者网卡等资源遭遇瓶颈，导致读写能力无法扩展。<br/>
 如果你没有遇到上述问题，使用 MongoDB 复制集就足够了，管理维护上比 Sharded cluster 要简单很多。
 </p>
 
@@ -33,7 +33,7 @@ Mongos，Config Server和Shard都是mongod进程，Mongos负责Router和load bal
 
 # 关于Shard Key
 <p>
-Shard Key分为2种，range Key和hashed key</br>
+Shard Key分为2种，range Key和hashed key<br/>
 collection的shard key需要建立索引，要么是独立索引，要么是复合索引的前缀（如果没有建索引，会在设置成shard key时被强制建立索引）
 </p>
 
@@ -47,12 +47,12 @@ collection的shard key需要建立索引，要么是独立索引，要么是复�
 <a href="https://docs.mongodb.com/manual/reference/command/">pymongo command和mongo runCommand()的一样。</a>
 </p>
 <p>
-如果collection是在运行时创建的，需要在创建的时候调用命令（mongo shell）</br>
-sh.enableSharding(“database name”)，用来允许数据库分片 </br>
+如果collection是在运行时创建的，需要在创建的时候调用命令（mongo shell）<br/>
+sh.enableSharding(“database name”)，用来允许数据库分片 <br/>
 sh.shardCollectioin(‘db name.collection name’, {key: directory or ‘hashed’})，设置collection的分片key
-其他相关命令</br>
-sh.addShard(‘replica set name/host:port’)，添加shard数据库（集合）</br>
-sh.status()，查看cluster的库和集合的状态。</br>
+其他相关命令<br/>
+sh.addShard(‘replica set name/host:port’)，添加shard数据库（集合）<br/>
+sh.status()，查看cluster的库和集合的状态。<br/>
 如下图：
 <img src="/assets/img/mongo-sh-status.png />
 蓝色框表示3个shards（都不是复制集而是单独mongod server）
@@ -71,7 +71,7 @@ Aggregation Pipeline and Sharded Collections
 <p>
 在执行db.collections.aggregate()方法中加入参数explain就可以返回pipeline的分裂结果。
 </p>
-比如</br>
+比如<br/>
 {% highlight python %}
 db.getCollection('stat_cap1_1h_x').aggregate(
     [
@@ -86,7 +86,7 @@ db.getCollection('stat_cap1_1h_x').aggregate(
     { explain: true }
 )
 {% endhighlight %}
-输出</br>
+输出<br/>
 {% highlight json %}
 {
     "needsPrimaryShardMerger" : false,
@@ -440,7 +440,7 @@ db.getCollection('stat_cap1_1h_x').aggregate(
 
 ### 一些tips
 <p>
-要换shard_key，没有自动更换的命令，需要：</br>
+要换shard_key，没有自动更换的命令，需要：<br/>
 <ul>
 <li>把collection的数据导出，mongoexport db.collection to file.dat</li>
 <li>drop掉集合，drop collection</li>
