@@ -1,3 +1,14 @@
+---
+layout: post
+title: DHT协议
+tags: dht,协议,网络,bt
+datetime: 2017-3-16 17:58
+---
+
+{{ page.title }}
+================
+<strong><a href="http://www.bittorrent.org/beps/bep_0005.html">DHT协议英文原文</a></strong>
+
 BitTorrent 使用"分布式哈希表"(DHT)来为无 tracker 的种子(torrents)存储 peer 之间的联系信息。这样每个 peer 都成了 tracker。这个协议基于 Kademila[1] 网络并且在 UDP 上实现。
 
 请注意本文档中使用的术语，以免混乱。
