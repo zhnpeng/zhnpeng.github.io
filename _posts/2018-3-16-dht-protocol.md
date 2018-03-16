@@ -148,7 +148,7 @@ get_peers 与 torrent 文件的 infohash 有关。这时 KPRC 协议中的 "q" =
 ### announce_peer
 这个请求用来表明发出 announce_peer 请求的节点，正在某个端口下载 torrent 文件。announce_peer 包含 4 个参数。第一个参数是 id，包含了请求节点的 ID；第二个参数是 info_hash，包含了 torrent 文件的 infohash；第三个参数是 port 包含了整型的端口号，表明 peer 在哪个端口下载；第四个参数数是 token，这是在之前的 get_peers 请求中收到的回复中包含的。收到 announce_peer 请求的节点必须检查这个 token 与之前我们回复给这个节点 get_peers 的 token 是否相同。如果相同，那么被请求的节点将记录发送 announce_peer 节点的 IP 和请求中包含的 port 端口号在 peer 联系信息中对应的 infohash 下。
 <ul>
-<li>参数: {"id" : "&lt;querying nodes id&gt;", "implied_port": <0 or 1>, "info_hash" : "&lt;20-byte infohash of target torrent&gt;", "port" : <port number>, "token" : "&lt;opaque token&gt;"}</li>
+<li>参数: {"id" : "&lt;querying nodes id&gt;", "implied_port": &lt;0 or 1&gt;, "info_hash" : "&lt;20-byte infohash of target torrent&gt;", "port" : &lt;port number&gt;, "token" : "&lt;opaque token&gt;"}</li>
 <li>回复: {"id" : "&lt;queried nodes id&gt;"}</li>
 </ul>
 <strong>报文包例子 Example Packets:</strong>
