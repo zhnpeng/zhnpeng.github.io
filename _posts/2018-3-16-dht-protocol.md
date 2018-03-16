@@ -58,8 +58,10 @@ peers 如果支持 DHT 协议就将 BitTorrent 协议握手消息的保留位的
 ***
 一个无 tracker 的 torrent 文件字典不包含 announce 关键字，而使用 nodes 关键字来替代。这个关键字对应的内容应该设置为 torrent 创建者的路由表中 K 个最接近的节点。可供选择的，这个关键字也可以设置为一个已知的可用节点，比如这个 torrent 文件的创建者。请不要自动加入 router.bittorrent.com 到 torrent 文件中或者自动加入这个节点到客户端路由表中。
 <ul>
-<li>nodes = [["<host>", <port>], ["<host>", <port>], ...]</li>
-<li>nodes = [["127.0.0.1", 6881], ["your.router.node", 4804]]</li>
+<li>nodes = [["&lt;host&gt;", &lt;port&gt;], ["&lt;host&gt;", &lt;port&gt;], ...]</li>
+<li>
+nodes = [["127.0.0.1", 6881], ["your.router.node", 4804]]
+</li>
 </ul>
 
 ## KRPC 协议 KRPC Protocol
