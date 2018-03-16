@@ -18,8 +18,8 @@ BitTorrent 使用"分布式哈希表"(DHT)来为无 tracker 的种子(torrents)�
 请注意本文档中使用的术语，以免混乱。
 
 <ul>
-<li>"peer" 是在一个 TCP 端口上监听的客户端/服务器，它实现了 BitTorrent 协议。</li>
-<li>"节点" 是在一个 UDP 端口上监听的客户端/服务器，它实现了 DHT(分布式哈希表) 协议。</li>
+<li&gt;"peer" 是在一个 TCP 端口上监听的客户端/服务器，它实现了 BitTorrent 协议。</li>
+<li&gt;"节点" 是在一个 UDP 端口上监听的客户端/服务器，它实现了 DHT(分布式哈希表) 协议。</li>
 </ul>
 DHT 由节点组成，它存储了 peer 的位置。BitTorrent 客户端包含一个 DHT 节点，这个节点用来联系 DHT 中其他节点，从而得到 peer 的位置，进而通过 BitTorrent 协议下载。
 
@@ -105,8 +105,8 @@ Peers 的联系信息被编码为 6 字节的字符串。又被称为 "CompactIP
 ### ping
 最基础的请求就是 ping。这时 KPRC 协议中的 "q" = "ping"。Ping 请求包含一个参数 id，它是一个 20 字节的字符串包含了发送者网络字节序的节点 ID。对应的 ping 回复也包含一个参数 id，包含了回复者的节点 ID。
 <ul>
-<li>参数: {"id" : "<querying nodes id>"}</li>
-<li>回复: {"id" : "<queried nodes id>"}</li>
+<li>参数: {"id" : "&lt;querying nodes id&gt;"}</li>
+<li>回复: {"id" : "&lt;queried nodes id&gt;"}</li>
 </ul>
 <strong>报文包例子 Example Packets</strong>
 <ul>
@@ -118,8 +118,8 @@ Peers 的联系信息被编码为 6 字节的字符串。又被称为 "CompactIP
 ### find_node
 find_node 被用来查找给定 ID 的节点的联系信息。这时 KPRC 协议中的 "q" == "find_node"。find_node 请求包含 2 个参数，第一个参数是 id，包含了请求节点的ID。第二个参数是 target，包含了请求者正在查找的节点的 ID。当一个节点接收到了 find_node 的请求，他应该给出对应的回复，回复中包含 2 个关键字 id 和 nodes，nodes 是字符串类型，包含了被请求节点的路由表中最接近目标节点的 K(8) 个最接近的节点的联系信息。
 <ul>
-<li>参数: {"id" : "<querying nodes id>", "target" : "<id of target node>"}</li>
-<li>回复: {"id" : "<queried nodes id>", "nodes" : "<compact node info>"}</li>
+<li>参数: {"id" : "&lt;querying nodes id&gt;", "target" : "&lt;id of target node&gt;"}</li>
+<li>回复: {"id" : "&lt;queried nodes id&gt;", "nodes" : "&lt;compact node info&gt;"}</li>
 </ul>
 <strong>报文包例子 Example Packets</strong>
 <ul>
@@ -132,9 +132,9 @@ find_node 被用来查找给定 ID 的节点的联系信息。这时 KPRC 协议
 ### get_peers
 get_peers 与 torrent 文件的 infohash 有关。这时 KPRC 协议中的 "q" = "get_peers"。get_peers 请求包含 2 个参数。第一个参数是 id，包含了请求节点的 ID。第二个参数是 info_hash，它代表 torrent 文件的 infohash。如果被请求的节点有对应 info_hash 的 peers，他将返回一个关键字 values，这是一个列表类型的字符串。每一个字符串包含了 "CompactIP-address/portinfo" 格式的 peers 信息。如果被请求的节点没有这个 infohash 的 peers，那么他将返回关键字 nodes，这个关键字包含了被请求节点的路由表中离 info_hash 最近的 K 个节点，使用 "Compactnodeinfo" 格式回复。在这两种情况下，关键字 token 都将被返回。token 关键字在今后的 annouce_peer 请求中必须要携带。token 是一个短的二进制字符串。
 <ul>
-<li>参数: {"id" : "<querying nodes id>", "info_hash" : "<20-byte infohash of target torrent>"}</li>
-<li>回复: {"id" : "<queried nodes id>", "token" :"<opaque write token>", "values" : ["<peer 1 info string>", "<peer 2 info string>"]}</li>
-<li>或: {"id" : "<queried nodes id>", "token" :"<opaque write token>", "nodes" : "<compact node info>"}</li>
+<li>参数: {"id" : "&lt;querying nodes id&gt;", "info_hash" : "&lt;20-byte infohash of target torrent&gt;"}</li>
+<li>回复: {"id" : "&lt;queried nodes id&gt;", "token" :"&lt;opaque write token&gt;", "values" : ["&lt;peer 1 info string&gt;", "&lt;peer 2 info string&gt;"]}</li>
+<li>或: {"id" : "&lt;queried nodes id&gt;", "token" :"&lt;opaque write token&gt;", "nodes" : "&lt;compact node info&gt;"}</li>
 </ul>
 <strong>报文包例子 Example Packets:</strong>
 <ul>
@@ -148,8 +148,8 @@ get_peers 与 torrent 文件的 infohash 有关。这时 KPRC 协议中的 "q" =
 ### announce_peer
 这个请求用来表明发出 announce_peer 请求的节点，正在某个端口下载 torrent 文件。announce_peer 包含 4 个参数。第一个参数是 id，包含了请求节点的 ID；第二个参数是 info_hash，包含了 torrent 文件的 infohash；第三个参数是 port 包含了整型的端口号，表明 peer 在哪个端口下载；第四个参数数是 token，这是在之前的 get_peers 请求中收到的回复中包含的。收到 announce_peer 请求的节点必须检查这个 token 与之前我们回复给这个节点 get_peers 的 token 是否相同。如果相同，那么被请求的节点将记录发送 announce_peer 节点的 IP 和请求中包含的 port 端口号在 peer 联系信息中对应的 infohash 下。
 <ul>
-<li>参数: {"id" : "<querying nodes id>", "implied_port": <0 or 1>, "info_hash" : "<20-byte infohash of target torrent>", "port" : <port number>, "token" : "<opaque token>"}</li>
-<li>回复: {"id" : "<queried nodes id>"}</li>
+<li>参数: {"id" : "&lt;querying nodes id&gt;", "implied_port": <0 or 1>, "info_hash" : "&lt;20-byte infohash of target torrent&gt;", "port" : <port number>, "token" : "&lt;opaque token&gt;"}</li>
+<li>回复: {"id" : "&lt;queried nodes id&gt;"}</li>
 </ul>
 <strong>报文包例子 Example Packets:</strong>
 <ul>
