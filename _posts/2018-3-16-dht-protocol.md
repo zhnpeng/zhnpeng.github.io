@@ -8,15 +8,12 @@ datetime: 2017-3-16 17:58
 {{ page.title }}
 ================
 ## 前言
+***
 DHT协议是BT网络协议，<strong><a href="http://www.bittorrent.org/beps/bep_0005.html">DHT协议英文原文</a></strong>很简短，搬了一份感觉不错的翻译，文末有原帖链接。
 ***
-  
-
 BitTorrent 使用"分布式哈希表"(DHT)来为无 tracker 的种子(torrents)存储 peer 之间的联系信息。这样每个 peer 都成了 tracker。这个协议基于 Kademila[1] 网络并且在 UDP 上实现。
-  
 
 请注意本文档中使用的术语，以免混乱。
-
 <ul>
 <li&gt;"peer" 是在一个 TCP 端口上监听的客户端/服务器，它实现了 BitTorrent 协议。</li>
 <li&gt;"节点" 是在一个 UDP 端口上监听的客户端/服务器，它实现了 DHT(分布式哈希表) 协议。</li>
