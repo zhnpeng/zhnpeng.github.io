@@ -15,8 +15,8 @@ BitTorrent 使用"分布式哈希表"(DHT)来为无 tracker 的种子(torrents)�
 
 请注意本文档中使用的术语，以免混乱。
 <ul>
-<li&gt;"peer" 是在一个 TCP 端口上监听的客户端/服务器，它实现了 BitTorrent 协议。</li>
-<li&gt;"节点" 是在一个 UDP 端口上监听的客户端/服务器，它实现了 DHT(分布式哈希表) 协议。</li>
+<li>"peer" 是在一个 TCP 端口上监听的客户端/服务器，它实现了 BitTorrent 协议。</li>
+<li>"节点" 是在一个 UDP 端口上监听的客户端/服务器，它实现了 DHT(分布式哈希表) 协议。</li>
 </ul>
 DHT 由节点组成，它存储了 peer 的位置。BitTorrent 客户端包含一个 DHT 节点，这个节点用来联系 DHT 中其他节点，从而得到 peer 的位置，进而通过 BitTorrent 协议下载。
 
