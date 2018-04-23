@@ -76,6 +76,8 @@ stopsignal = QUIT
 
 ## 运行
 执行supervisord运行，没有报错，说明配置正确。
+执行<code>supervisorctl</code>可以看到进程正在运行。
+重启所以进程<code>supervisorctl reload</code>
 
 # nginx
 {% highlight bash %}
