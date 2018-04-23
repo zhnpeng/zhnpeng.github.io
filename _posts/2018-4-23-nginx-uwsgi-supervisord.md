@@ -9,13 +9,13 @@ datetime: 2018-4-23 13:58
 ================
 因为每次新建Python web project都需要搭建这些东西，也很难记住，所以每次都搜索，索性在这里记录一下，web端使用Django。
 
-# 安装
+## 安装
 nginx 使用操作系统包管理器安装，比如:apt-get,yum<br/>
 uwsgi和supervisord 使用pip安装就可以
 
-# uwsgi配置与运行
+## uwsgi配置与运行
 
-## 配置
+# 配置uwsgi
 配置实例
 {% highlight bash %}
 [uwsgi]
@@ -45,13 +45,13 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "web.settings")
 application = get_wsgi_application()
 {% endhighlight %}
 
-## 运行
+# 运行uwsgi
 配置完之后，执行 <code>uwsgi --ini uwsgi.ini</code>运行
 如果没有保存，说明配置正确。
 
-# supervisord
+## supervisord
 
-## 配置
+# 配置supervisord
 安装完supervisord之后，调用<code>echo_supervisord_conf > /etc/supervisord.conf</code>
 把sample配置文件写到supervisord得默认配置文件/etc/supervisord.conf中
 <code>vi /etc/supervisord.conf</code>
@@ -74,12 +74,12 @@ stdout_logfile = /var/log/web.log
 stopsignal = QUIT
 {% endhighlight %}
 
-## 运行
+# 运行sueprvisord
 执行<code>supervisord</code>运行，没有报错，说明配置正确。<br/>
 执行<code>supervisorctl</code>可以看到进程正在运行。<br/>
 重启所有进程<code>supervisorctl reload</code>
 
-# nginx
+## nginx
 {% highlight bash %}
 location / {
     include uwsgi_params;
@@ -89,5 +89,5 @@ location / {
 {% endhighlight %}
 配置/的路由的uwsgi_pass到uwsgi进程的sock，注意需要有权限。
 
-# 最后
+## 最后
 访问http://host/看有没有问题
