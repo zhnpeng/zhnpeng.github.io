@@ -52,15 +52,17 @@ application = get_wsgi_application()
 # supervisord
 
 ## 配置
-安装完supervisord之后，调用echo_supervisord_conf > /etc/supervisord.conf
+安装完supervisord之后，调用<code>echo_supervisord_conf > /etc/supervisord.conf</code>
 把sample配置文件写到supervisord得默认配置文件/etc/supervisord.conf中
-vi /etc/supervisord.conf
+<code>vi /etc/supervisord.conf</code>
 文件末尾有
+{% highlight bash %}
 [include]
 files = relative/path/*.ini
-把自己项目的ini include进去
+{% endhighlight %}
+把自己项目的ini include进去,比如<code>files=path/*.ini</code>
 
-supervisord配置示例
+supervisord配置示例(path/web.ini)
 {% highlight bash %}
 [program:web]
 command = /usr/bin/uwsgi --ini /etc/megas/web/uwsgi.ini
