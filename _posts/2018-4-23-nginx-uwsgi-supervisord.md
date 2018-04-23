@@ -10,7 +10,7 @@ datetime: 2018-4-23 13:58
 因为每次新建Python web project都需要搭建这些东西，也很难记住，所以每次都搜索，索性在这里记录一下，web端使用Django。
 
 # 安装
-nginx 使用操作系统包管理器安装，比如:apt-get,yum
+nginx 使用操作系统包管理器安装，比如:apt-get,yum<br/>
 uwsgi和supervisord 使用pip安装就可以
 
 # uwsgi配置与运行
