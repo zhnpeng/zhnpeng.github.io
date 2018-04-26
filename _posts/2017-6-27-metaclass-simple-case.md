@@ -11,7 +11,7 @@ datetime: 2017-6-27 22:38
 ### 概述
 metaclass在很多语言里都有，能够动态改变类的行为。
 
-### 简单模拟了一下Django ORM Model
+### 例子：简单模拟了一下Django ORM Model
 Model 可以以下面的形式定义Field:
 {% highlight python %}
 from django.db import models
@@ -110,7 +110,7 @@ attrs['__init__'] = __init__
 这段代码重载了类的构造函数<code>__init__</code>，在构造的时候会调用<code>Field.validate</code>方法，并且把对象的属性赋值为validated之后的cleaned_data。<br/>
 所以在调用<code>print MyModel.age</code>打印的是Field Object，而MyModel()对象输出的是100。
 
-### metaclass hook 实现 mixin
+### 例子：metaclass hook 实现 mixin
 {% highlight python %}
 # -*- coding: utf-8 -*-
 import six
