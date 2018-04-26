@@ -100,13 +100,13 @@ Output:
 {% endhighlight %}
 
 # Tips
-<code>
+{% highlight python %}
 def __init__(self, *args, **kwargs):
     for field, field_obj in fields.items():
         cleaned_data = field_obj.validate(kwargs.get(field, None))
         setattr(self, field, cleaned_data)
 attrs['__init__'] = __init__
-</code>
+{% endhighlight %}
 这段代码重载了类的构造函数<code>__init__</code>，在构造的时候会调用<code>Field.validate</code>方法，并且把对象的属性赋值为validated之后的cleaned_data。<br/>
 所以在调用<code>print MyModel.age</code>打印的是Field Object，而MyModel()对象输出的是100。
 
