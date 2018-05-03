@@ -1,6 +1,6 @@
 ﻿blog page.
 
-Site: https://layjump.github.io/
+Site: https://wandouz.github.io/
 
 Templte: https://github.com/hueidou/hueidou.github.io
 
