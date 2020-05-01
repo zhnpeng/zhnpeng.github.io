@@ -1,7 +1,7 @@
 ---
 layout: post
 title: cookies，会话和跨域
-tags: cookies,session,跨域请求,csr
+tags: [cookies,session,跨域请求,csr]
 datetime: 2017-6-8 21:13
 ---
 

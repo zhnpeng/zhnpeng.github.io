@@ -1,7 +1,7 @@
 ---
 layout: post
 title: nginx-uwsgi-supervisord
-tags: nginx,uwsgi,supervisor,supervisord,django
+tags: [nginx,uwsgi,supervisor,supervisord,django]
 datetime: 2018-4-23 13:58
 ---
 

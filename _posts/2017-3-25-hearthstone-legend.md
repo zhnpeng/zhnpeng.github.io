@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 炉石传说第一次上传说
-tags: hearthstone,炉石,天梯,传说
+tags: [game,hearthstone,炉石,天梯,传说]
 datetime: 2017-3-25 23:22
 ---
 

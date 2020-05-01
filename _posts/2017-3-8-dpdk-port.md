@@ -1,7 +1,7 @@
 ---
 layout: post
 title: DPDK 网卡接口
-tags: DPDK,port,driver
+tags: [DPDK,port,driver]
 datetime: 2017-3-8 14:53
 ---
 

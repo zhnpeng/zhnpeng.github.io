@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Mongo sort ram limit
-tags: Mongo,sort,ram,query,find,aggregate
+tags: [Mongo,sort,ram,query,find,aggregate]
 datetime: 2017-6-2 9:59
 ---
 

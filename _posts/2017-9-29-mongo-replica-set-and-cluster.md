@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Mongo复制集和集群
-tags: DB, mongo, replica set, cluster, mongos, shard, config server
+tags: [DB, mongo, replica set, cluster, mongos, shard, config server]
 datetime: 2017-9-29 16:42
 ---
 

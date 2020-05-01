@@ -1,7 +1,7 @@
 ---
 layout: post
 title: xml加密解密
-tags: python,xml,加密,解密
+tags: [python,xml,加密,解密]
 datetime: 2017-3-16 15:36
 ---
 

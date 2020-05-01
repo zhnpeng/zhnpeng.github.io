@@ -1,7 +1,7 @@
 ---
 layout: post
 title: codemirror xml lint
-tags: codemirror,editor,lint
+tags: [codemirror,editor,lint]
 datetime: 2017-3-8 11:56
 ---
 

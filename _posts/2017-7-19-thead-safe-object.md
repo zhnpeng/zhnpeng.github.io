@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Python线程安全的对象
-tags: python,theading,thread-safe
+tags: [python,theading,thread-safe]
 datetime: 2017-7-19 22:43
 ---
 

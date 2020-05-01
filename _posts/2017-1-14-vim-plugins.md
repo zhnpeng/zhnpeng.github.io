@@ -1,7 +1,7 @@
 ---
 layout: post
 title: vim插件使用经验
-tags: vim
+tags: [vim, editor]
 datetime: 2017-1-14 22:50
 ---
 

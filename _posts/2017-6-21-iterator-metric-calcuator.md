@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Python实现指标运算
-tags: generator,python,metric,calculator
+tags: [generator,python,metric,calculator]
 datetime: 2017-6-21 14:07
 ---
 

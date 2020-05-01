@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Python Profile function
-tags: python,profile
+tags: [python,profile]
 datetime: 2017-5-8 15:04
 ---
 

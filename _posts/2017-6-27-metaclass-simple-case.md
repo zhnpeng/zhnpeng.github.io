@@ -1,7 +1,7 @@
 ---
 layout: post
 title: python metaclass
-tags: python,metaclass,orm,simple
+tags: [python,metaclass,orm,simple]
 datetime: 2017-6-27 22:38
 ---
 

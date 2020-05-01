@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Django Session And Auth Middleware
-tags:
+tags: [Django,Session]
 datetime: 2016-9-27 11:30
 ---
 

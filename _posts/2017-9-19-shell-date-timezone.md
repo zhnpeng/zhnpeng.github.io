@@ -1,7 +1,7 @@
 ---
 layout: post
 title: linux shell date
-tags: linux,shell, date, timezone, locale
+tags: [linux,shell, date, timezone, locale]
 datetime: 2017-9-19 11:50
 ---
 

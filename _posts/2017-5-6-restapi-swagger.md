@@ -1,7 +1,7 @@
 ---
 layout: post
 title: restapi swagger
-tags: restapi,swagger,文档,自动,gencode
+tags: [restapi,swagger,文档,自动,gencode]
 datetime: 2017-5-6 19:16
 ---
 

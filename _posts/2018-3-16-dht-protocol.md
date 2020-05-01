@@ -1,7 +1,7 @@
 ---
 layout: post
 title: DHT协议
-tags: dht,协议,网络,bt
+tags: [dht,协议,网络,bt]
 datetime: 2017-3-16 17:58
 ---
 
