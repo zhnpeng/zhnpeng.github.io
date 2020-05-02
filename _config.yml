@@ -7,6 +7,7 @@ url:         'http://zhnpeng.github.io/' # The base hostname & protocol for your
 github:      'zhnpeng'
 
 markdown:  kramdown
+highlighter: rouge
 permalink: pretty
 paginate:  10
 
