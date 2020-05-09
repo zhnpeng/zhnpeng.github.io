@@ -9,7 +9,7 @@ datetime: 2020-5-3 9:34
 ================
 
 ## 概述
-zmq是一个异步消息队列库，使用方便，我们用了broker pattern，用于异步任务系统，但是由于这个模式是reactor模式，单线程每次处理一次请求并且响应，导致当并发量大或者单词请求耗时长时，broker节点会成为瓶颈。
+zmq是一个异步消息队列库，使用方便，我们用了broker pattern，用于异步任务系统，但是由于zmq的socket不能线程共享，单线程reactor模式响应frontend和backend，导致当并发量大或者单词请求耗时长时，broker节点会成为瓶颈。
 
 ## ZeroMQ broker pattern
 <img src="/assets/img/zmq-broker-pattern.png" />
